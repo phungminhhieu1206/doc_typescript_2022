@@ -1,0 +1,10 @@
+- thực ra thì cần khai báo kiểu trả về cho hàm, tuy nhiên thực tế thì không cần thiết, ts tự hiểu kiểu trả về là gì dựa vào giá trị trả về của hàm đã định nghĩa
+
+- Thêm cấu hình tsconfig.json tại root của project giúp cấu hình build từ ts sang js:
+    + Rút gon lệnh build do đã cấu hình trong tsconfig.json !
+    + Lưu ý target version ES cho build ts sang js ở các project về sự tương thích giữa chúng !
+
+- Khi build bth và chạy node build/index.js sẽ gặp lỗi [SyntaxError: Cannot use import statement outside a module] do không thể import module kiểu này (import * as Mailer from "./mailer";)
+    + Sửa bằng cách: thêm "module": "commonjs" trong "compilerOptions" của file tsconfig.json
+    + Build lại và chạy bth sẽ được file index.js với import module kiểu require: const Mailer = require("./mailer");
+
