@@ -1,0 +1,11 @@
+npm install --save-dev ts-node-dev typescript
+- typescript cần để chạy lệnh tsc, nhằm build ts sang js
+- ts-node-dev để có câu lệnh tsnd tương tự nodemon, truyền thêm tham số --respawn để khi có thay đổi gì thì chạy lại câu lệnh chỉ định
+
++ Thêm phần sau vào script trong package.json
+"dev": "tsnd --respawn ./src/index.ts",
+"build": "tsc .src/index.ts --outDir ./build"
+
++ Chạy:
+npm run dev: Chạy lệnh dev trên, và tự động chạy khi save thay đổi file index.ts
+npm run build

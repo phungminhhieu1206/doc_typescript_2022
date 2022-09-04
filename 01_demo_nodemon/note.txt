@@ -1,0 +1,4 @@
+Setting: npm install --save-dev nodemon
+Add: "start": "nodemon index.js" in script of package.json
+Run: npm start --> auto restart when you edit file index.js
+
