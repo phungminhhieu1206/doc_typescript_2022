@@ -1,11 +1,34 @@
++ Cài đặt tự đồng run code bằng nodemon, tự động format code bằng prettier:
 npm install --save-dev ts-node-dev typescript
 - typescript cần để chạy lệnh tsc, nhằm build ts sang js
 - ts-node-dev để có câu lệnh tsnd tương tự nodemon, truyền thêm tham số --respawn để khi có thay đổi gì thì chạy lại câu lệnh chỉ định
 
-+ Thêm phần sau vào script trong package.json
++ Thêm phần sau vào script trong package.json:
 "dev": "tsnd --respawn ./src/index.ts",
 "build": "tsc .src/index.ts --outDir ./build"
 
 + Chạy:
 npm run dev: Chạy lệnh dev trên, và tự động chạy khi save thay đổi file index.ts
 npm run build
+
++ Cài đặt prettier extension để format code ts trên vsc, sau đó:
+- Tạo thư mục: .vscode trong root project
+- Tạo file .vscode/settings.json và cấu hình như sau:
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
+
+- Tạo file .prettierrc trong root là file config cho prettier, thêm nội dung sau và save:
+{
+    "printWidth": 60, // một dòng tối đa 60 ký tự
+    "singleQuote": true
+}
+
+[Note]: 
+- Nếu không auto format khi save thì xem lại trong cài đặt vsc. Search: "format on save" trong preference setting, sau đó tick vào ô Format On Save
+- Chỉnh format document with default:
+    + command + P
+    + format document with
+    + Choose: Configure default formatter
+    + Choose: Prettier
