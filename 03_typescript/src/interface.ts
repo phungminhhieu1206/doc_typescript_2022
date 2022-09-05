@@ -68,6 +68,8 @@ if (newContact.email !== undefined) {
  * 1. Thêm ? để kiểm tra undefined cho pet, khi đến ? mà kqua là undefined thì dừng lại
  * 2. Tuy nhiên chẳng hạn đến pet thì không undefined nhưng name thì undefined như vậy vi phạm kiểu trả về của hàm là string
  *  + Giải pháp: thêm || '' để khi name trả về undefined thì return '' <chuỗi rỗng>
+ *
+ * 3. Trong thực tế thì không viết xác định chính xác kiểu trả về của hàm là gì, mà lúc trả về cái này, lúc trả về cái kia
  */
 function getPetName(contact: IContact): string {
   return contact.pet?.name || "";
