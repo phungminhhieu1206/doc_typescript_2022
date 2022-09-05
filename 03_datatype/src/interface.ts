@@ -10,20 +10,37 @@
  * Thực hiện: Thêm dấu ? vào sau tên trường
  */
 
-import { send } from ".//mailer";
+// optional chaining
+/**
+ * Trường hợp thực tế khi không kiểm soát được undefined gây ra hiện tượng: crash;
+ * Crash: trong react thì trắng trang, trong server node thì không load được server
+ *
+ */
+
+import { send } from "./mailer";
 
 const contacts: IContact[] = [];
+
+// create new interface for operator chaining
+interface Pet {
+  name: string;
+  age?: number;
+}
 
 interface IContact {
   name: string;
   phone: string;
   email?: string;
+  pet?: Pet;
 }
 
 const newContact: IContact = {
   name: "Nguyen Van A",
   phone: "09118181",
   email: "abc@gmail.com",
+  pet: {
+    name: "Pet A",
+  },
 };
 
 const otherContact: IContact = {
@@ -45,3 +62,13 @@ if (newContact.email !== undefined) {
   Type 'undefined' is not assignable to type 'string'"
  * Do đó cần check not undefined trước khi send   
  */
+
+// operator chaining
+/**
+ * 1. Thêm ? để kiểm tra undefined cho pet, khi đến ? mà kqua là undefined thì dừng lại
+ * 2. Tuy nhiên chẳng hạn đến pet thì không undefined nhưng name thì undefined như vậy vi phạm kiểu trả về của hàm là string
+ *  + Giải pháp: thêm || '' để khi name trả về undefined thì return '' <chuỗi rỗng>
+ */
+function getPetName(contact: IContact): string {
+  return contact.pet?.name || "";
+}
